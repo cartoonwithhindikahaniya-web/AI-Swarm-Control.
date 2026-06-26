@@ -6,11 +6,14 @@ from src.swarm.controller import SwarmController
 def main():
     load_dotenv()
 
-    if not os.getenv("OPENAI_API_KEY"):
-        print("Error: OPENAI_API_KEY not found in environment variables.")
+    provider = os.getenv("LLM_PROVIDER", "openai").lower()
+    api_key_env = "OPENAI_API_KEY" if provider == "openai" else "DEEPSEEK_API_KEY"
+
+    if not os.getenv(api_key_env):
+        print(f"Error: {api_key_env} not found in environment variables for provider {provider}.")
         sys.exit(1)
 
-    print("=== Cyberscroti AGI Deep Research Swarm ===")
+    print(f"=== Cyberscroti AGI Deep Research Swarm [{provider.upper()}] ===")
 
     if len(sys.argv) > 1:
         project_name = " ".join(sys.argv[1:])

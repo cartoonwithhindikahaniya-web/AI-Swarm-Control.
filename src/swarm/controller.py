@@ -1,14 +1,13 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from src.agents.base import BaseAgent
 from src.agents.researcher import ResearchAgent
 from src.agents.analyst import CryptoAnalystAgent
 
 class SwarmController:
-    def __init__(self, model: str = "gpt-4o"):
-        self.model = model
+    def __init__(self, model: Optional[str] = None):
         self.researcher = ResearchAgent(model=model)
         self.analyst = CryptoAnalystAgent(model=model)
-        self.manager = ResearchAgent(name="Manager", model=model) # Using research agent as a proxy for manager for now
+        self.manager = ResearchAgent(name="Manager", model=model)
 
     def execute_workflow(self, project_name: str) -> str:
         print(f"[Swarm] Initiating deep research workflow for: {project_name}")

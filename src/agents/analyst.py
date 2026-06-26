@@ -1,9 +1,9 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from src.agents.base import BaseAgent
 from src.tools.crypto_tools import get_crypto_price, get_market_data
 
 class CryptoAnalystAgent(BaseAgent):
-    def __init__(self, name: str = "Analyst", model: str = "gpt-4o"):
+    def __init__(self, name: str = "Analyst", model: Optional[str] = None):
         super().__init__(name, "Crypto Market Analyst", model)
 
     def run(self, task: str) -> str:

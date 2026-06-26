@@ -1,9 +1,9 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from src.agents.base import BaseAgent
 from src.tools.research_tools import web_search
 
 class ResearchAgent(BaseAgent):
-    def __init__(self, name: str = "Researcher", model: str = "gpt-4o"):
+    def __init__(self, name: str = "Researcher", model: Optional[str] = None):
         super().__init__(name, "Research Specialist", model)
 
     def run(self, task: str) -> str:
